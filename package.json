@@ -1,12 +1,15 @@
 {
-  "name": "sapui5-tutorial",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "ui5",
+	"version": "1.0.0",
+	"description": "The UI5 quickstart tutorial",
+	"main": "index.js",
+	"scripts": {
+		"start": "ui5 serve -o index.html"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@ui5/cli": "^4.0.19"
+	}
 }
