@@ -23,8 +23,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          source: an
-          target: main
+          branch: an
+          base: main
           title: ${{ steps.get_commit.outputs.commit_msg }}
           commit-message: ${{ steps.get_commit.outputs.commit_msg }}
           body: 'Auto PR from an to main'
