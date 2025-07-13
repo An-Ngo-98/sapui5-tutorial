@@ -1,0 +1,30 @@
+name: Auto PR from an to main
+
+on:
+	push:
+		branches:
+			- an
+
+jobs:
+	create-pr:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Checkout
+				uses: actions/checkout@v4
+				with:
+					fetch-depth: 0
+
+			- name: Get latest commit message
+				id: get_commit
+				run: |
+					COMMIT_MSG=$(git log -1 --pretty=%s)
+					echo "commit_msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
+
+			- name: Create Pull Request
+				uses: peter-evans/create-pull-request@v6
+				with:
+					source: an
+					target: main
+					title: ${{ steps.get_commit.outputs.commit_msg }}
+					commit-message: ${{ steps.get_commit.outputs.commit_msg }}
+					body: "Auto PR from an to main"
