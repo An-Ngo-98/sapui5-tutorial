@@ -6,26 +6,34 @@ on:
       - an
 
 jobs:
-  create-pr:
+  auto-pr:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # đảm bảo GITHUB_TOKEN có quyền ghi
+      pull-requests: write
+
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get latest commit message
-        id: get_commit
-        run: |
-          COMMIT_MSG=$(git log -1 --pretty=%s)
-          echo "commit_msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
+      - name: Make dummy change (ensure commit diff)
+        run: echo "// dummy change to force PR" >> force-change.js
 
-      - name: Create Pull Request
+      - name: Commit dummy change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add force-change.js
+          git commit -m "chore: force PR diff" || echo "No changes to commit"
+
+      - name: Create pull request
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: ${{ steps.get_commit.outputs.commit_msg }}
-          title: ${{ steps.get_commit.outputs.commit_msg }}
-          body: "Auto PR from 'an' to 'main'"
-          branch: auto-pr-an-to-main
+          commit-message: 'ci: auto PR'
+          title: 'ci: auto PR from an to main'
+          body: 'Auto-generated PR'
+          branch: auto-pr-${{ github.run_id }} # tránh trùng branch
           base: main
