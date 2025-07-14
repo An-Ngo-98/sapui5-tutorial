@@ -1,12 +1,10 @@
-// prettier-ignore-file
-sap.ui.define([], () => {
+sap.ui.define(['sap/m/Button', 'sap/m/MessageToast'], (Button, MessageToast) => {
 	'use strict';
 
-	alert('a');
-	// new Button({
-	// 	text: 'Ready...',
-	// 	press() {
-	// 		MessageToast.show('Hello World!');
-	// 	},
-	// }).placeAt('content');
+	new Button({
+		text: 'Ready...',
+		press() {
+			MessageToast.show('Hello World!');
+		},
+	}).placeAt('content');
 });
