@@ -18,6 +18,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install gh -y
+      - name: Create Pull Request if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_EXISTS=$(gh pr list --head an --base main --state open --json number --jq '.[].number')
+          if [ -z "$PR_EXISTS" ]; then
+            gh pr create --title "Auto PR: an → main" --body "Auto-generated PR" --base main --head an
+          else
+            echo "Pull request already exists: #$PR_EXISTS"
+          fi
+
       # - name: Make dummy change (ensure commit diff)
       #   run: echo "// dummy change to force PR" >> force-change.js
 
@@ -28,12 +43,12 @@ jobs:
       #     git add force-change.js
       #     git commit -m "chore: force PR diff" || echo "No changes to commit"
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'ci: auto PR'
-          title: 'ci: auto PR from an to main'
-          body: 'Auto-generated PR'
-          branch: auto-pr-${{ github.run_id }} # tránh trùng branch
-          base: main
+      # - name: Create pull request
+      #   uses: peter-evans/create-pull-request@v6
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     commit-message: 'ci: auto PR'
+      #     title: 'ci: auto PR from an to main'
+      #     body: 'Auto-generated PR'
+      #     branch: auto-pr-${{ github.run_id }} # tránh trùng branch
+      #     base: main
