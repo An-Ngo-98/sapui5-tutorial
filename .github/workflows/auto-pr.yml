@@ -18,15 +18,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Make dummy change (ensure commit diff)
-        run: echo "// dummy change to force PR" >> force-change.js
+      # - name: Make dummy change (ensure commit diff)
+      #   run: echo "// dummy change to force PR" >> force-change.js
 
-      - name: Commit dummy change
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add force-change.js
-          git commit -m "chore: force PR diff" || echo "No changes to commit"
+      # - name: Commit dummy change
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git add force-change.js
+      #     git commit -m "chore: force PR diff" || echo "No changes to commit"
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
