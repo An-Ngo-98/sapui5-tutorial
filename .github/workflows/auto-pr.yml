@@ -23,7 +23,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: an
+          branch: auto-pr-to-main
           base: main
           title: ${{ steps.get_commit.outputs.commit_msg }}
           commit-message: ${{ steps.get_commit.outputs.commit_msg }}
