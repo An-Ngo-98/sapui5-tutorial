@@ -8,9 +8,10 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "ui5.view.App",
+			"viewName": "view.main",
 			"type": "XML",
-			"id": "app"
+			"async": true,
+			"id": "mainView"
 		},
 		"dependencies": {
 			"minUI5Version": "1.120.0",
@@ -18,6 +19,11 @@
 				"sap.ui.core": {},
 				"sap.m": {}
 			}
-		}
+		},
+		"css": [
+			{
+				"uri": "css/style.css"
+			}
+		]
 	}
 }

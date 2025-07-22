@@ -3,14 +3,22 @@
 	"version": "1.0.0",
 	"description": "The UI5 quickstart tutorial",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"start": "ui5 serve -o index.html",
-		"build": "ui5 build --all"
+		"build": "ui5 build --all",
+		"format": "prettier --write .",
+		"lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+		"lint:fix": "eslint ./webapp eslint.config.js --ext .js,.ts,.jsx,.tsx --fix"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"@ui5/cli": "^4.0.19"
+		"@ui5/cli": "^4.0.19",
+		"eslint": "^9.31.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.3",
+		"prettier": "^3.6.2"
 	}
 }
