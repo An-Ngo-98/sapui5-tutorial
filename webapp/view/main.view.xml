@@ -1,0 +1,19 @@
+<mvc:View
+	controllerName='ui5.controller.main'
+	displayBlock="true"
+	xmlns='sap.m'
+	xmlns:mvc='sap.ui.core.mvc'
+	xmlns:my='ui5.control'>
+	<App>
+		<Page title="My First UI5 App" showHeader="false">
+			<Button
+				text='Steady...'
+				press='.onPress'/>
+		</Page>
+	</App>
+	<!-- <VBox class='sapUiSmallMargin'>
+		<my:button text="Xác nhận" type="primary" press="onConfirm"/>
+		<my:button text="Huỷ" type="warn" press="onCancel"/>
+		<my:button text="Like" icon="👍" type="accent" press="onLike"/>
+	</VBox> -->
+</mvc:View>
