@@ -23,10 +23,6 @@ export default [
 				'error',
 				'always' 
 			],
-			'space-before-function-paren': [
-				'error',
-				'always' 
-			],
 		
 			// ✅ Indentation rules
 			"indent": [
